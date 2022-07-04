@@ -16,6 +16,7 @@ import {
     XIcon,
 } from '@heroicons/react/outline'
 import { ChevronDownIcon } from '@heroicons/react/solid'
+import { Link } from 'react-router-dom'
 
 
 export default function Navbar() {
@@ -25,9 +26,9 @@ export default function Navbar() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6">
                     <div className="flex justify-between items-center py-6 md:justify-start md:space-x-10">
                         <div className="flex justify-start lg:w-0 lg:flex-1">
-                            <a href="#">
-                                <span className='font-extrabold text-xl'>Crypto</span>
-                            </a>
+                            <Link to="/">
+                                <span className='font-extrabold text-xl'>CryptoData</span>
+                            </Link>
                         </div>
                         <div className="-mr-2 -my-2 md:hidden">
                             <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
@@ -37,12 +38,12 @@ export default function Navbar() {
                         </div>
                         <Popover.Group as="nav" className="hidden md:flex space-x-10">
 
-                            <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            <Link to="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
                                 Coins
-                            </a>
-                            <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            </Link>
+                            <Link to="/exchanges" className="text-base font-medium text-gray-500 hover:text-gray-900">
                                 Exchanges
-                            </a>
+                            </Link>
                         </Popover.Group>
                         <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
                             <a href="#" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">

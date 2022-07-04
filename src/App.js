@@ -1,4 +1,6 @@
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Exchanges from './components/Exchanges/Exchanges';
 import Footer from './components/Footer/Footer';
 import Navbar from './components/Navbar/Navbar';
 import Home from './pages/Home/Home';
@@ -7,7 +9,10 @@ import useFetch from './useFetch';
 function App() {
 
 
-  const { data, loading, error } = useFetch("https://api.coincap.io/v2/assets")
+  const { data, loading, error } = useFetch(`${process.env.REACT_APP_CRYPTO_API_URL}/assets`)
+
+  const { data: exchanges } = useFetch(`${process.env.REACT_APP_CRYPTO_API_URL}/exchanges`)
+
 
   if (loading) {
     return (
@@ -24,7 +29,10 @@ function App() {
   return (
     <>
       <Navbar />
-      {crypto && <Home crypto={data} />}
+      <Routes>
+        <Route path="/" element={crypto && <Home crypto={data} />} />
+        <Route path='/exchanges' element={exchanges && <Exchanges exchanges={exchanges} />} />
+      </Routes>
       <Footer />
     </>
   );

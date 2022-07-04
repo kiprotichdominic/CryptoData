@@ -21,42 +21,6 @@ function useFetch(url) {
             })
     }, []);
 
-    // const fetchCrypto = () => {
-    //     fetch(url)
-    //         .then(res => res.json())
-    //         .then((response) => {
-    //             if (!response) {
-    //                 setLoading(true)
-    //             } else {
-    //                 setLoading(false)
-    //                 setData(response.data)
-    //             }
-    //         })
-    //         .catch(error => {
-    //             setError(error)
-    //         })
-
-    // };
-
-    // useEffect(() => {
-    //     setLoading(true)
-    // fetch(url)
-    //     .then(res => res.json())
-    //     .then((response) => {
-    //         if (!response) {
-    //             setLoading(true)
-    //             console.log("Fetching Data");
-    //         }
-    //         else {
-    //             setLoading(false)
-    //             setData(response.data)
-    //         }
-    //     })
-    //     .catch(error => {
-    //         setError(error)
-    //     })
-    // }, [])
-
     return { data, loading, error }
 
 }
