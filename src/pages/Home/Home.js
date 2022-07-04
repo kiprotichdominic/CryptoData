@@ -1,9 +1,9 @@
-import Navbar from '../../components/Navbar/Navbar'
+import CryptoTable from '../../components/CryptoTable/CryptoTable'
 
-function Home() {
+function Home({ crypto }) {
     return (
         <>
-            <Navbar />
+            <CryptoTable crypto={crypto} />
         </>
     )
 }
