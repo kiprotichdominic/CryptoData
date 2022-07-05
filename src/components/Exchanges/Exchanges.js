@@ -1,8 +1,10 @@
 import CurrencyFormat from 'react-currency-format';
+import convertToInternationalCurrencySystem from '../../utils/convertCurrency';
 
 
 
 export default function Exchanges({ exchanges }) {
+
     return (
         <div className="px-4 sm:px-6 lg:px-8 pt-5 max-w-7xl mx-auto px-4 sm:px-6">
             <div className="sm:flex sm:items-center">
@@ -37,9 +39,6 @@ export default function Exchanges({ exchanges }) {
                                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                             Volume(24hr)
                                         </th>
-                                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                            Status
-                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200 bg-white">
@@ -53,11 +52,8 @@ export default function Exchanges({ exchanges }) {
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                 <div className="text-gray-900">
-                                                    {item.volumeUsd}
+                                                    {convertToInternationalCurrencySystem(item.volumeUsd)}
                                                 </div>
-                                            </td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <div className="text-gray-900">{item.name}</div>
                                             </td>
                                         </tr>
                                     ))}

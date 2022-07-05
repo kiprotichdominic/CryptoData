@@ -1,4 +1,5 @@
 import CurrencyFormat from 'react-currency-format';
+import convertToInternationalCurrencySystem from '../../utils/convertCurrency';
 
 
 
@@ -74,21 +75,19 @@ export default function CryptoTable({ crypto }) {
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                 <div className="text-gray-900">
-                                                    <CurrencyFormat value={item.priceUsd} displayType={'text'} thousandSeparator={true} decimalScale={2} prefix={'$'} />
+                                                    $ {convertToInternationalCurrencySystem(item.priceUsd)}
                                                 </div>
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
 
                                                 <div className="text-gray-900">
-                                                    {new Intl.NumberFormat('ja-JP', {
-                                                        style: 'currency',
-                                                        currency: 'USD',
-                                                    }).format(item.marketCapUsd)}
-                                                    {/* <CurrencyFormat value={item.marketCapUsd} displayType={'number'} thousandSeparator={true} decimalScale={2} prefix={'$'} disabled /> */}
+                                                    $ {convertToInternationalCurrencySystem(item.marketCapUsd)}
                                                 </div>
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <div className="text-gray-900">{item.supply}</div>
+                                                <div className="text-gray-900">
+                                                    $ {convertToInternationalCurrencySystem(item.supply)}
+                                                </div>
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                 <div className="text-gray-900">{item.changePercent24Hr}</div>
