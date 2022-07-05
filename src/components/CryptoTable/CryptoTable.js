@@ -1,5 +1,6 @@
 import CurrencyFormat from 'react-currency-format';
 import convertToInternationalCurrencySystem from '../../utils/convertCurrency';
+import percentageFormater from '../../utils/percentageFormater';
 
 
 
@@ -11,16 +12,8 @@ export default function CryptoTable({ crypto }) {
                 <div className="sm:flex-auto">
                     <h1 className="text-xl font-semibold text-gray-900">Crypto</h1>
                     <p className="mt-2 text-sm text-gray-700">
-                        A list of all the users in your account including their name, title, email and role.
+                        A list of all the Cryptocurrencies.
                     </p>
-                </div>
-                <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                    <button
-                        type="button"
-                        className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                    >
-                        Add user
-                    </button>
                 </div>
             </div>
             <div className="mt-8 flex flex-col">
@@ -90,7 +83,9 @@ export default function CryptoTable({ crypto }) {
                                                 </div>
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <div className="text-gray-900">{item.changePercent24Hr}</div>
+                                                <div className="text-gray-900">
+                                                    {percentageFormater(item.changePercent24Hr)}%
+                                                </div>
                                             </td>
                                         </tr>
                                     ))}
