@@ -1,9 +1,9 @@
 import CryptoTable from '../../components/CryptoTable/CryptoTable'
 
-function Home({ crypto }) {
+function Home({ crypto, cryptoPrices }) {
     return (
         <>
-            <CryptoTable crypto={crypto} />
+            <CryptoTable crypto={crypto} cryptoPrices={cryptoPrices} />
         </>
     )
 }
