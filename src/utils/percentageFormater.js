@@ -1,4 +1,3 @@
-import React from 'react'
 
 function percentageFormater(labelValue) {
     return Math.abs(Number(labelValue)).toFixed(2);
