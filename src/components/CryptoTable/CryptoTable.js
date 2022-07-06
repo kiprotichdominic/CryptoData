@@ -1,4 +1,3 @@
-import CurrencyFormat from 'react-currency-format';
 import convertToInternationalCurrencySystem from '../../utils/convertCurrency';
 import percentageFormater from '../../utils/percentageFormater';
 

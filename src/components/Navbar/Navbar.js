@@ -23,7 +23,7 @@ export default function Navbar() {
     const location = useLocation(); // once ready it returns the 'window.location' object
     const [url, setUrl] = useState(null);
     useEffect(() => {
-      setUrl(location.pathname);
+        setUrl(location.pathname);
     }, [location]);
 
     return (
@@ -44,10 +44,10 @@ export default function Navbar() {
                         </div>
                         <Popover.Group as="nav" className="hidden md:flex space-x-10">
 
-                            <Link to="/" className={(url === "/" ?" active font-bold text-lg text-base  text-red-500 hover:text-gray-900" : "text-base text-lg font-bold text-gray-500 hover:text-red-900")}>
+                            <Link to="/" className={(url === "/" ? " active font-bold text-lg text-base text-red-500 hover:text-red-900" : "text-base text-lg font-bold text-black-500 hover:text-red-900")}>
                                 Coins
                             </Link>
-                            <Link to="/exchanges" className={(url === "/exchanges" ?" active font-bold text-lg text-base text-red-500 hover:text-red-900" : "text-base text-lg font-bold text-black-500 hover:text-red-900")}>
+                            <Link to="/exchanges" className={(url === "/exchanges" ? " active font-bold text-lg text-base text-red-500 hover:text-red-900" : "text-base text-lg font-bold text-black-500 hover:text-red-900")}>
                                 Exchanges
                             </Link>
                         </Popover.Group>
