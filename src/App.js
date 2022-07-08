@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Exchanges from './components/Exchanges/Exchanges';
@@ -9,7 +9,8 @@ import useFetch from './useFetch';
 
 function App() {
 
-  const [cryptoPrices, setCryptoPrices] = useState()
+  const [cryptoPrices, setCryptoPrices] = useState([])
+
 
   const { data, loading, error } = useFetch(`${process.env.REACT_APP_CRYPTO_API_URL}/assets`)
 
@@ -17,13 +18,46 @@ function App() {
 
   const pricesWs = new WebSocket(`${process.env.REACT_APP_WEBSOCKET_API_URL}`)
 
+  useEffect(() => {
+    const ws = new WebSocket(`${process.env.REACT_APP_WEBSOCKET_API_URL}`)
+
+    const handler = (e) => {
+      const response = JSON.parse(e.data);
+
+      setCryptoPrices(cryptoPrices => [
+        // ...cryptoPrices, // <-- shallow copy previous state
+        response,          // <-- append new data
+      ]);
+    };
+
+    ws.addEventListener('message', handler);
+
+    ws.onopen = () => {
+      ws.send(JSON.stringify({
+        action: "subscribe_to_operations_activity",
+        request_id: new Date().getTime(),
+      }));
+    };
+
+    return () => {
+      ws.removeEventListener('message', handler);
+    };
+  }, []);
+
+  // console.log(operationsList);
+
+  // pricesWs.addEventListener("open", e => {
+  //   pricesWs.get(JSON.stringify(msg))
+  // })
   // pricesWs.onmessage = function (msg) {
   //   // console.log(msg.data)
-  //   setCryptoPrices(msg.data)
+  //   let finalData = msg
+  //   setCryptoPrices(msg)
+  //   console.log(finalData.data);
   // }
   // console.log(data);
 
-  // console.log(cryptoPrices);
+  // console.log(cryptoPrices.data);
   if (loading) {
     return (
       <div className="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-gray-700 opacity-75 flex flex-col items-center justify-center">

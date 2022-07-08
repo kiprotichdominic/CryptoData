@@ -1,10 +1,12 @@
+import { useState } from 'react';
 import convertToInternationalCurrencySystem from '../../utils/convertCurrency';
 import percentageFormater from '../../utils/percentageFormater';
 
 
 
 export default function CryptoTable({ crypto, cryptoPrices }) {
-
+    const updatedKeys = cryptoPrices[0] ? Object.keys(cryptoPrices[0]) : null
+    const updatedValues = cryptoPrices[0] ? Object.values(cryptoPrices[0]) : null
     return (
         <div className="px-4 sm:px-6 lg:px-8 pt-5 max-w-7xl mx-auto px-4 sm:px-6">
             <div className="sm:flex sm:items-center">
@@ -55,11 +57,15 @@ export default function CryptoTable({ crypto, cryptoPrices }) {
                                                 <div className="text-gray-900">{item.name}</div>
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                {/* {cryptoPrices?.cryptoPrices.map((cryptoPrice) => (
+                                                <PriceKey  currPrice={item.priceUsd} updatedIds={updatedKeys} updatedPrices={updatedValues} coinId={item.id} />
+                                                {/* {cryptoPrices && cryptoPrices?.cryptoPrices.map((cryptoPrice) => (
                                                     <div className="text-gray-900">
-                                                    {cryptoPrice.item}
+                                                        $ {cryptoPrice[item.id]}
                                                     </div>
                                                 ))} */}
+                                                {/* <div className="text-gray-900">
+                                                    $ {convertToInternationalCurrencySystem(item.priceUsd)}
+                                                </div> */}
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
 
@@ -87,4 +93,22 @@ export default function CryptoTable({ crypto, cryptoPrices }) {
             </div>
         </div>
     )
+}
+
+
+function PriceKey({ currPrice, updatedIds, updatedPrices, coinId }) {
+    // const [actualPrice, setActualPrice] = useState(currPrice)
+    // console.log(`Current: ${currPrice}`)
+    const index = updatedIds?.indexOf(coinId)
+    // let actualPrice = currPrice
+    if (index != null && updatedPrices[index] != currPrice) {
+        currPrice = updatedPrices[index]
+    } 
+    
+
+    return (<div className="text-gray-900">
+        $ {currPrice===updatedPrices  ? currPrice : updatedPrices[index]}
+    </div>)
+
+
 }

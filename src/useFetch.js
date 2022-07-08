@@ -6,7 +6,7 @@ function useFetch(url) {
     const [error, setError] = useState(null)
 
     useEffect(() => {
-        const interval = setInterval(() => {
+        // const interval = setInterval(() => {
             fetch(url)
                 .then(res => res.json())
                 .then((response) => {
@@ -15,14 +15,13 @@ function useFetch(url) {
                     } else {
                         setLoading(false)
                         setData(response.data)
-                        console.log(data);
                     }
                 })
                 .catch(error => {
                     setError(error)
                 })
-        },30000)
-        return () => clearInterval(interval)
+        // })
+        // return () => clearInterval(interval)
     }, []);
 
     return { data, loading, error }
