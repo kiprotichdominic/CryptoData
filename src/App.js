@@ -27,8 +27,9 @@ function App() {
       setCryptoPrices(cryptoPrices => [
         // ...cryptoPrices, // <-- shallow copy previous state
         response,          // <-- append new data
-      ]);
+      ],);
     };
+    // cryptoPrices.shift(0, 1);
 
     ws.addEventListener('message', handler);
 

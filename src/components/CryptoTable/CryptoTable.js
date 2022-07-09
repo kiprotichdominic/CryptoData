@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import convertToInternationalCurrencySystem from '../../utils/convertCurrency';
 import percentageFormater from '../../utils/percentageFormater';
 
@@ -57,7 +56,15 @@ export default function CryptoTable({ crypto, cryptoPrices }) {
                                                 <div className="text-gray-900">{item.name}</div>
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <PriceKey  currPrice={item.priceUsd} updatedIds={updatedKeys} updatedPrices={updatedValues} coinId={item.id} />
+                                                <PriceKey
+                                                    currPrice={item.priceUsd}
+                                                    updatedIds={updatedKeys}
+                                                    updatedPrices={updatedValues}
+                                                    coinId={item.id}
+                                                    crypto={crypto}
+                                                />
+
+
                                                 {/* {cryptoPrices && cryptoPrices?.cryptoPrices.map((cryptoPrice) => (
                                                     <div className="text-gray-900">
                                                         $ {cryptoPrice[item.id]}
@@ -96,18 +103,22 @@ export default function CryptoTable({ crypto, cryptoPrices }) {
 }
 
 
-function PriceKey({ currPrice, updatedIds, updatedPrices, coinId }) {
+function PriceKey({ currPrice, updatedIds, updatedPrices, coinId, crypto }) {
     // const [actualPrice, setActualPrice] = useState(currPrice)
     // console.log(`Current: ${currPrice}`)
     const index = updatedIds?.indexOf(coinId)
+    // const index = crypto.findIndex(coinId)
+    console.log(index);
+    // console.log(crypto);
     // let actualPrice = currPrice
-    if (index != null && updatedPrices[index] != currPrice) {
-        currPrice = updatedPrices[index]
-    } 
-    
+    if (index != null && index >= 0) {
+        return updatedPrices[index]
+    }
+
+
 
     return (<div className="text-gray-900">
-        $ {currPrice===updatedPrices  ? currPrice : updatedPrices[index]}
+        {currPrice}
     </div>)
 
 
