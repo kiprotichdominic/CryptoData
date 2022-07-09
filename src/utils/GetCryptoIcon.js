@@ -1,20 +1,3 @@
-function checkIfImageExists(url, callback) {
-    const img = new Image();
-    img.src = url;
-
-    if (img.complete) {
-        callback(true);
-    } else {
-        img.onload = () => {
-            callback(true);
-        };
-
-        img.onerror = () => {
-            callback(false);
-        };
-    }
-}
-
 function GetCryptoIcon({ coinSymbol }) {
     const icon = typeof coinSymbol === 'string' ? coinSymbol.toLowerCase() : '';
     let cryptoIcon = `https://assets.coincap.io/assets/icons/${icon}@2x.png`
