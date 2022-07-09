@@ -1,4 +1,6 @@
 import convertToInternationalCurrencySystem from '../../utils/convertCurrency';
+import GetCryptoIcon from '../../utils/GetCryptoIcon';
+import GetRealTimePriceData from '../../utils/GetRealTimePriceData';
 import percentageFormater from '../../utils/percentageFormater';
 
 
@@ -8,7 +10,7 @@ export default function CryptoTable({ crypto, cryptoPrices }) {
     const updatedValues = cryptoPrices[0] ? Object.values(cryptoPrices[0]) : null
     return (
         <div className="px-4 sm:px-6 lg:px-8 pt-5 max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="sm:flex sm:items-center">
+            <div className="sm:flex sm:items-center">            
                 <div className="sm:flex-auto">
                     <h1 className="text-xl font-semibold text-gray-900">Crypto</h1>
                     <p className="mt-2 text-sm text-gray-700">
@@ -46,17 +48,29 @@ export default function CryptoTable({ crypto, cryptoPrices }) {
                                 <tbody className="divide-y divide-gray-200 bg-white">
                                     {crypto?.map((item) => (
                                         <tr key={item.id}
-                                        className={`${item.priceUsd < item.updatedPrices} ? "flashgreen-pricechange" : "flashred-pricechange"}`}
+                                            className={`${item.priceUsd < item.updatedPrices} ? "flashgreen-pricechange" : "flashred-pricechange"}`}
                                         >
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                 <div className="text-gray-900">{item.rank}</div>
                                             </td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <div className="text-gray-900">{item.name}</div>
+                                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+                                                <div className="flex items-center">
+                                                    <div className="h-10 w-10 flex-shrink-0">
+                                                        <GetCryptoIcon
+                                                            updatedIds={updatedKeys}
+                                                            updatedPrices={updatedValues}
+                                                            coinId={item.id}
+                                                            coinSymbol={item.symbol}
+                                                        />
+                                                    </div>
+                                                    <div className="ml-4">
+                                                        <div className="font-medium text-gray-900">{item.name}</div>
+                                                    </div>
+                                                </div>
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                 <div className="text-gray-900">
-                                                    $<PriceKey
+                                                    $<GetRealTimePriceData
                                                         currPrice={item.priceUsd}
                                                         updatedIds={updatedKeys}
                                                         updatedPrices={updatedValues}
@@ -100,4 +114,3 @@ function PriceKey({ currPrice, updatedIds, updatedPrices, coinId }) {
     }
     return convertToInternationalCurrencySystem(currPrice)
 }
- 
