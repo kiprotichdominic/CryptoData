@@ -95,7 +95,6 @@ export default function CryptoTable({ crypto, cryptoPrices }) {
 
 function PriceKey({ currPrice, updatedIds, updatedPrices, coinId }) {
     const index = updatedIds?.indexOf(coinId)
-    console.log(index);
     if (index != null && index >= 0) {
         return updatedPrices[index]
     }
