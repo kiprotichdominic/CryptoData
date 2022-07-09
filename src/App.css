@@ -8,6 +8,7 @@
 	0% {
 		-webkit-transform: rotate(0deg);
 	}
+
 	100% {
 		-webkit-transform: rotate(360deg);
 	}
@@ -17,7 +18,28 @@
 	0% {
 		transform: rotate(0deg);
 	}
+
 	100% {
 		transform: rotate(360deg);
 	}
+}
+
+.maincolor{
+	color: #0053FF;
+}
+
+.mainneon-color {
+	background: #f2a900 !important;
+	height: 100%;
+}
+
+
+.flashgreen-pricechange {
+	background-color: rgba(24, 198, 131, 0.19);
+	width: 100%;
+}
+
+.flashred-pricechange {
+	background-color: rgba(244, 67, 54, 0.19);
+	width: 100%;
 }

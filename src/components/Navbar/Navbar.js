@@ -1,8 +1,9 @@
-/* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useEffect, useState } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon, } from '@heroicons/react/outline'
 import { Link, useLocation } from 'react-router-dom'
+
+import './Navbar.css'
 
 
 export default function Navbar() {
@@ -13,13 +14,13 @@ export default function Navbar() {
     }, [location]);
 
     return (
-        <div className="relative bg-gray-50 sticky top-0">
+        <div className="relative sticky top-0">
             <Popover className="relative bg-white shadow">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6">
                     <div className="flex justify-between items-center py-6 md:justify-start md:space-x-10">
                         <div className="flex justify-start lg:w-0 lg:flex-1">
                             <Link to="/">
-                                <span className='font-extrabold text-xl'>CryptoData</span>
+                                <span className='font-extrabold text-xl maincolor'>CryptoData</span>
                             </Link>
                         </div>
                         <div className="-mr-2 -my-2 md:hidden">
@@ -30,10 +31,10 @@ export default function Navbar() {
                         </div>
                         <Popover.Group as="nav" className="hidden md:flex space-x-10">
 
-                            <Link to="/" className={(url === "/" ? " active font-bold text-lg text-base text-red-500 hover:text-red-900" : "text-base text-lg font-bold text-black-500 hover:text-red-900")}>
+                            <Link to="/" className={(url === "/" ? " active font-bold text-lg text-base text-black-500 navcolor" : "text-base text-lg font-bold text-black-500 navcolor")}>
                                 Coins
                             </Link>
-                            <Link to="/exchanges" className={(url === "/exchanges" ? " active font-bold text-lg text-base text-red-500 hover:text-red-900" : "text-base text-lg font-bold text-black-500 hover:text-red-900")}>
+                            <Link to="/exchanges" className={(url === "/exchanges" ? " active font-bold text-lg text-base text-black-500 navcolor" : "text-base text-lg font-bold text-black-500 navcolor")}>
                                 Exchanges
                             </Link>
                         </Popover.Group>

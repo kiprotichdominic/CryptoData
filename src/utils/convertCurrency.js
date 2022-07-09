@@ -11,7 +11,7 @@ function convertToInternationalCurrencySystem(labelValue) {
             // Three Zeroes for Thousands
             : Math.abs(Number(labelValue)) >= 1.0e+3
 
-                ? (Math.abs(Number(labelValue)) / 1.0e+3).toFixed(2) + "K"
+                ? (Math.abs(Number(labelValue))).toFixed(2)
 
                 : Math.abs(Number(labelValue)).toFixed(2);
 

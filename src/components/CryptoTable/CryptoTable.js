@@ -41,14 +41,13 @@ export default function CryptoTable({ crypto, cryptoPrices }) {
                                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                             Change(24Hr)
                                         </th>
-                                        <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                                            <span className="sr-only">Edit</span>
-                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200 bg-white">
                                     {crypto?.map((item) => (
-                                        <tr key={item.id}>
+                                        <tr key={item.id}
+                                        className={`${item.priceUsd < item.updatedPrices} ? "flashgreen-pricechange" : "flashred-pricechange"}`}
+                                        >
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                 <div className="text-gray-900">{item.rank}</div>
                                             </td>
@@ -56,23 +55,14 @@ export default function CryptoTable({ crypto, cryptoPrices }) {
                                                 <div className="text-gray-900">{item.name}</div>
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <PriceKey
-                                                    currPrice={item.priceUsd}
-                                                    updatedIds={updatedKeys}
-                                                    updatedPrices={updatedValues}
-                                                    coinId={item.id}
-                                                    crypto={crypto}
-                                                />
-
-
-                                                {/* {cryptoPrices && cryptoPrices?.cryptoPrices.map((cryptoPrice) => (
-                                                    <div className="text-gray-900">
-                                                        $ {cryptoPrice[item.id]}
-                                                    </div>
-                                                ))} */}
-                                                {/* <div className="text-gray-900">
-                                                    $ {convertToInternationalCurrencySystem(item.priceUsd)}
-                                                </div> */}
+                                                <div className="text-gray-900">
+                                                    $<PriceKey
+                                                        currPrice={item.priceUsd}
+                                                        updatedIds={updatedKeys}
+                                                        updatedPrices={updatedValues}
+                                                        coinId={item.id}
+                                                    />
+                                                </div>
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
 
@@ -103,23 +93,12 @@ export default function CryptoTable({ crypto, cryptoPrices }) {
 }
 
 
-function PriceKey({ currPrice, updatedIds, updatedPrices, coinId, crypto }) {
-    // const [actualPrice, setActualPrice] = useState(currPrice)
-    // console.log(`Current: ${currPrice}`)
+function PriceKey({ currPrice, updatedIds, updatedPrices, coinId }) {
     const index = updatedIds?.indexOf(coinId)
-    // const index = crypto.findIndex(coinId)
     console.log(index);
-    // console.log(crypto);
-    // let actualPrice = currPrice
     if (index != null && index >= 0) {
         return updatedPrices[index]
     }
-
-
-
-    return (<div className="text-gray-900">
-        {currPrice}
-    </div>)
-
-
+    return convertToInternationalCurrencySystem(currPrice)
 }
+ 
