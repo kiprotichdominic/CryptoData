@@ -1,4 +1,5 @@
 import convertToInternationalCurrencySystem from '../../utils/convertCurrency';
+import percentageFormater from '../../utils/percentageFormater';
 
 
 
@@ -30,6 +31,9 @@ export default function Exchanges({ exchanges }) {
                                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                             Volume(24hr)
                                         </th>
+                                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                            Total(%)
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200 bg-white">
@@ -44,6 +48,11 @@ export default function Exchanges({ exchanges }) {
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                 <div className="text-gray-900">
                                                     {convertToInternationalCurrencySystem(item.volumeUsd)}
+                                                </div>
+                                            </td>
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                <div className="text-gray-900">
+                                                {percentageFormater(item.percentTotalVolume)}%
                                                 </div>
                                             </td>
                                         </tr>
