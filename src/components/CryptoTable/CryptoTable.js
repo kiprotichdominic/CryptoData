@@ -48,9 +48,7 @@ export default function CryptoTable({ crypto, cryptoPrices }) {
                                 </thead>
                                 <tbody className="divide-y divide-gray-200 bg-white">
                                     {crypto?.map((item) => (
-                                        <tr key={item.id}
-                                            className={`${item.priceUsd < item.updatedPrices} ? "flashgreen-pricechange" : "flashred-pricechange"}`}
-                                        >
+                                        <tr key={item.id}>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                 <div className="text-gray-900">{item.rank}</div>
                                             </td>
