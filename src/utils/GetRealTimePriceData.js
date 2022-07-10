@@ -2,10 +2,12 @@ import convertToInternationalCurrencySystem from './convertCurrency'
 
 function GetRealTimePriceData({ currPrice, updatedIds, updatedPrices, coinId }) {
     const index = updatedIds?.indexOf(coinId)
+    const numberFormatter = Intl.NumberFormat('en-US');
+    // const formatted = numberFormatter.format(n);
     if (index != null && index >= 0) {
-        return updatedPrices[index]
+        return numberFormatter.format(updatedPrices[index])
     }
-    return convertToInternationalCurrencySystem(currPrice)
+    return numberFormatter.format(currPrice)
 }
 
 export default GetRealTimePriceData
