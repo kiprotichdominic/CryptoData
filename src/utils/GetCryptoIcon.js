@@ -4,7 +4,12 @@ function GetCryptoIcon({ coinSymbol }) {
     if (icon === 'ustc') {
         let icon = 'ust'
         let cryptoIcon = `https://assets.coincap.io/assets/icons/${icon}@2x.png`
-        return cryptoIcon
+        return (
+            <img className="h-10 w-10 rounded-full"
+                src={cryptoIcon}
+                alt=""
+            />
+        )
     } else {
         return (
             <img className="h-10 w-10 rounded-full"
